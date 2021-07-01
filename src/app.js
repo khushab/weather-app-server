@@ -21,5 +21,5 @@ app.get("/weather", (req, res) => {
 });
 
 app.listen(3200, () => {
-  console.log("server is running");
+  console.log("server is running at port 3200");
 });
