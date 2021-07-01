@@ -3,21 +3,32 @@ const express = require("express");
 
 const app = express();
 const publicPath = path.join(__dirname, "../public");
+
+app.set("view engine", "hbs");
 app.use(express.static(publicPath));
 
-// app.get("/help", (req, res) => {
-//   res.send({
-//     title: "help",
-//     name: "Khushab",
-//   });
-// });
+app.get("", (req, res) => {
+  res.render("index", {
+    title: "Weather App",
+    name: "Mohammed Khushab Alam",
+  });
+});
 
-// app.get("/about", (req, res) => {
-//   res.send("About Page");
-// });
+app.get("/about", (req, res) => {
+  res.render("about", {
+    title: "About me",
+    name: "Mohammed Khushab Alam",
+  });
+});
+
+app.get("/help", (req, res) => {
+  res.render("help", {
+    message: "How can we help you?",
+  });
+});
 
 app.get("/weather", (req, res) => {
-  res.send("weather page");
+  res.send("weatheer page");
 });
 
 app.listen(3200, () => {
