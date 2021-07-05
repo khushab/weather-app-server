@@ -12,7 +12,7 @@ const partialsPath = path.join(__dirname, "../templates/partials");
 //setup handlebars engine and views location
 app.set("view engine", "hbs");
 app.set("views", viewsPath);
-hbs.registerPartial(partialsPath);
+hbs.registerPartials(partialsPath);
 
 app.use(express.static(publicPath));
 
@@ -33,6 +33,8 @@ app.get("/about", (req, res) => {
 app.get("/help", (req, res) => {
   res.render("help", {
     message: "How can we help you?",
+    name: "Mohammed Khushab Alam",
+    title: "Help",
   });
 });
 
