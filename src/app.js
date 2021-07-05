@@ -1,45 +1,61 @@
-const path = require("path");
-const express = require("express");
-const hbs = require("hbs");
+const path = require('path');
+const express = require('express');
+const hbs = require('hbs');
 
 const app = express();
 
 //define path for express config
-const publicPath = path.join(__dirname, "../public");
-const viewsPath = path.join(__dirname, "../templates/views");
-const partialsPath = path.join(__dirname, "../templates/partials");
+const publicPath = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 
 //setup handlebars engine and views location
-app.set("view engine", "hbs");
-app.set("views", viewsPath);
+app.set('view engine', 'hbs');
+app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 
 app.use(express.static(publicPath));
 
-app.get("", (req, res) => {
-  res.render("index", {
+app.get('', (req, res) => {
+  res.render('index', {
     title: "Weather App",
     name: "Mohammed Khushab Alam",
   });
 });
 
-app.get("/about", (req, res) => {
-  res.render("about", {
+app.get('/about', (req, res) => {
+  res.render('about', {
     title: "About me",
     name: "Mohammed Khushab Alam",
   });
 });
 
-app.get("/help", (req, res) => {
-  res.render("help", {
+app.get('/help', (req, res) => {
+  res.render('help', {
     message: "How can we help you?",
     name: "Mohammed Khushab Alam",
     title: "Help",
   });
 });
 
-app.get("/weather", (req, res) => {
+app.get('/weather', (req, res) => {
   res.send("weatheer page");
+});
+
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: "404 error",
+    message: "Help article not found",
+    name: "Mohammed Khushab Alam",
+  })
+})
+
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: "404 error",
+    message: "Page Not Found",
+    name: "Mohammed Khushab Alam",
+  })
 });
 
 app.listen(3200, () => {
