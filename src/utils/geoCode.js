@@ -8,9 +8,9 @@ const geoCode = (city, callback) => {
   // console.log(url);
   request({ url, json: true }, (err, { body }) => {
     if (err) {
-      callback("Unabe to connect...", undefined);
+      callback({ error: "Unabe to connect..." }, undefined);
     } else if (body.features.length == 0) {
-      callback("Unable to find location..", undefined);
+      callback({ error: "Unable to find location.." }, undefined);
     } else {
       callback(undefined, {
         longitude: body.features[0].center[0],
