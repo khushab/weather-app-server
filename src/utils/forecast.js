@@ -12,7 +12,11 @@ const forecast = (lat, long, callback) => {
     } else if (body.cod == 400) {
       callback("Unable to find location", undefined);
     } else {
-      callback(undefined, body);
+      callback(undefined, {
+        location: `${body.name}, ${body.sys.country}`,
+        forecast: `${body.weather[0].description}, ${body.main.temp}C`,
+        body
+      });
     }
   });
 };
