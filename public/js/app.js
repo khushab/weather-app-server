@@ -1,5 +1,3 @@
-console.log("client size JS");
-
 const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 const message1 = document.querySelector('#message1')
@@ -18,7 +16,6 @@ weatherForm.addEventListener('submit', (e) => {
             } else {
                 message1.textContent = data.location
                 message2.textContent = data.forecast
-                console.log(data)
             }
         })
     })
